@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const validator = require('validator');
 
 const orderSchema = new mongoose.Schema({
+	UserId:{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Users'
+	},
 	date: {
 		type: Date,
 		required: true,
@@ -10,9 +14,10 @@ const orderSchema = new mongoose.Schema({
 	products: [
 		{
 			_id: false,
+			productid:String,
 			img: String,
 			name: String,
-			qty: Number,
+			quantity: Number,
 			price: Number,
 		}
 	],

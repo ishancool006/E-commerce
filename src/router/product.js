@@ -23,8 +23,6 @@ router.get('/api/getProducts', async (req, res) => {
     }
 })
 
-router.post('/api/postProducts', async (req, res) => {
-    console.log(req)
-}) 
+
  
 module.exports = router 
