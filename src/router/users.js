@@ -17,7 +17,7 @@ router.post('/api/signup', async (req, res) => {
 })
 
 router.post('/api/signin', async (req, res) => {
-    console.log("Signing in buddy")
+   // console.log("Signing in buddy")
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         //console.log(user)
@@ -53,6 +53,33 @@ router.patch('/api/updateMyProfile',auth ,async (req, res) => {
     }
 })
 
+router.get('/api/logout', auth, async (req, res) => {
+    req.user.tokens=req.user.tokens.filter((token)=>{
+        if(token.token != req.token)
+        {
+            return token
+        }
+        })
+        try{
+           // console.log(req.user.token)
+           await req.user.save()
+            res.status(200).send("Logout Sucessfull")
+        }catch(e){
+            res.send(e)
+        }
+})
+
+router.get('/api/logoutAll', auth, async (req, res) => {
+    req.user.tokens=[]
+        
+        try{
+            console.log(req.user.tokens)
+            await req.user.save()
+            res.status(200).send("Logout Sucessfull")
+        }catch(e){
+            res.send(e)
+        }
+})
 
  
 module.exports = router 
