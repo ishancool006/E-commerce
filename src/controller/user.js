@@ -2,11 +2,20 @@ const express = require('express')
 const User = require('../models/users')
 const auth = require('../middleware/auth')
 const router = new express.Router()
-const users =require("../controller/user")
 
-router.post('/api/signup',users.signup )
+const signup = async (req,res)=>{
+    const user = new User(req.body)
+    
+    try {
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.status(201).send({user,token})
+    } catch (e) {
+        res.status(400).send(e)
+    }
+}
 
-router.post('/api/signin', async (req, res) => {
+const signin = async (req,res) =>{
     //console.log("Signing in buddy")
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
@@ -16,13 +25,13 @@ router.post('/api/signin', async (req, res) => {
     } catch (e) {
         res.status(400).send(e)
     }
-})
+}
 
-router.get('/api/myprofile', auth, async (req, res) => {
+const myProfile = async (req,res) =>{
     res.send(req.user)
-})
+}
 
-router.patch('/api/updateMyProfile',auth ,async (req, res) => {
+const updateMyprofile = async (req,res)=>{
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'password',"addresses"]
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -41,9 +50,9 @@ router.patch('/api/updateMyProfile',auth ,async (req, res) => {
     } catch (e) {
         res.status(400).send(e)
     }
-})
+}
 
-router.get('/api/logout', auth, async (req, res) => {
+const logout = async (req,res) =>{
     req.user.tokens=req.user.tokens.filter((token)=>{
         if(token.token != req.token)
         {
@@ -57,9 +66,9 @@ router.get('/api/logout', auth, async (req, res) => {
         }catch(e){
             res.send(e)
         }
-})
+}
 
-router.get('/api/logoutAll', auth, async (req, res) => {
+const logoutAll = async (req,res) =>{
     req.user.tokens=[]
         
         try{
@@ -69,7 +78,8 @@ router.get('/api/logoutAll', auth, async (req, res) => {
         }catch(e){
             res.send(e)
         }
-})
+}
 
- 
-module.exports = router 
+module.exports = {
+    signup,signin,myProfile,updateMyprofile,logout,logoutAll
+}
