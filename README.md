@@ -13,6 +13,7 @@ All the Api's Are authenticated Except Signup and Signin
 API's List
 
 Signup
+
     Method- POST     
     URL -   localhost:3000/api/signup 
     Authentication -None
@@ -33,6 +34,7 @@ Signup
 
 
 SignIn
+
     Method- POST     
     URL -   localhost:3000/api/signin
     Authentication - None
@@ -43,12 +45,14 @@ SignIn
 
 
 Get My Profile
+
     Method- GET     
     URL -   localhost:3000/api/myprofile
     Authentication - Bearer {{token}}
 
 
 Update Existing Profile
+
     Method- PATCH    
     URL -   localhost:3000/api/updateMyProfile
     Authentication - Bearer {{token}}
@@ -56,6 +60,7 @@ Update Existing Profile
  
     
 Logout From Current Device
+
     Method- GET    
     URL -   localhost:3000/api/logout
     Authentication - Bearer {{token}}
@@ -63,6 +68,7 @@ Logout From Current Device
 
 
 Logout From All Device
+
     Method- GET   
     URL -   localhost:3000/api/logout
     Authentication - Bearer {{token}}
@@ -70,6 +76,7 @@ Logout From All Device
 
 
 Add Products
+
     Method- POST   
     URL -   localhost:3000/api/addProduct
     Authentication -
@@ -84,6 +91,7 @@ Add Products
 
 
 Get Products
+
     Method- GET  
     URL -   localhost:3000/api/getProducts
     Authentication - None
@@ -91,6 +99,7 @@ Get Products
 
 
 Place Order
+
     Method- POST   
     URL -   localhost:3000/api/placeOrder
     Authentication -Bearer {{token}}
@@ -102,6 +111,7 @@ Place Order
 
 
 Add To Cart
+
     Method- POST  
     URL -   localhost:3000/api/addToCart
     Authentication -Bearer {{token}}
@@ -112,6 +122,7 @@ Add To Cart
 
 
 Remove From the Cart
+
     Method- POST  
     URL -   localhost:3000/api/removeFromCart
     Authentication -Bearer {{token}}
