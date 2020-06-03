@@ -4,9 +4,13 @@ E-commerce app is REST api collection.It contains various api calls.
 
 Easiest way to Start with project is clone the repository.
 2)Make dev.env file config folder in root directory of project and add following Environment Variable  
-    PORT        ---port for the server to be run
-    JWT_SECRET  ---JSON webtoken String
+    
+    PORT        ---port for the server to be run	
+    
+    JWT_SECRET  ---JSON webtoken String		
+    
     MONGODB_URL ---MongoDb database URL
+    
 3)Run "npm init" command in project directory
 
 All the Api's Are authenticated Except Signup and Signin
